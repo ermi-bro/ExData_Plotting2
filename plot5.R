@@ -6,6 +6,8 @@ library(reshape2)
 library(ggplot2)
 ## STEP 1: Setup working directory and open the data in working folder
 setwd("C:\\rproj\\Exploratory_Data_Analysis\\ASSIGN2")
+fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
+download.file(fileUrl, destfile="data.zip")
 NEI <- readRDS("summarySCC_PM25.rds")
 
 ## STEP 2: Generate subset data for only Balimore City by "ON-RAOD" type of emission sources
@@ -20,5 +22,8 @@ rm(NEI)
 ## STEP 4: Ploting total emission by year and "ON-ROAD" type using ggplot ploting system 
 png(file = "plot5.png")
     g <- ggplot(Baltimore, aes(year, Emissions))
-    g + geom_point()
+    g + geom_point() + 
+    labs(x = "Year",
+         y = "Emission",
+         title = "Baltimore City: Total Emission from Motor Vehicle by Year")
 dev.off()

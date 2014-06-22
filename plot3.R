@@ -6,6 +6,8 @@ library(reshape2)
 library(ggplot2)
 ## STEP 1: Setup working directory and open the data in working folder
 setwd("C:\\rproj\\Exploratory_Data_Analysis\\ASSIGN2")
+fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
+download.file(fileUrl, destfile="data.zip")
 NEI <- readRDS("summarySCC_PM25.rds")
 
 ## STEP 2: Generate subset data for only Balimore City by type of emission sources
@@ -20,7 +22,9 @@ rm(NEI)
 ## STEP 4: Ploting total emission by year and Type using ggplot ploting system 
 png(file = "plot3.png")
     g <- ggplot(Baltimore, aes(year, Emissions))
-    g + geom_point() + facet_grid(. ~ type)  
-    + labs(title = "Baltimore City: Total emission (logPM2.5) by Year") 
-    + labs(x = "Year", y = "Emission (logPM2.5)")
+    g + geom_point() + facet_grid(. ~ type) + 
+        labs(x = "Year",
+             y = "Emission",
+             title = "Baltimore City: Total Emission by Type of Source and Year")
 dev.off()
+

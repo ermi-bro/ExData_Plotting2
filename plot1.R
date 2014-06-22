@@ -5,6 +5,10 @@
 library(reshape2)
 ## STEP 1: Setup working directory and open the data in working folder
 setwd("C:\\rproj\\Exploratory_Data_Analysis\\ASSIGN2")
+fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
+download.file(fileUrl, destfile="data.zip")
+data <- unzip("data.zip")
+
 NEI <- readRDS("summarySCC_PM25.rds")
 
 ## STEP 2: Generating (aggregate) total emission from all sources for year 1999 to 2008

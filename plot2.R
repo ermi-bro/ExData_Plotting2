@@ -5,6 +5,8 @@
 library(reshape2)
 ## STEP 1: Setup working directory and open the data in working folder
 setwd("C:\\rproj\\Exploratory_Data_Analysis\\ASSIGN2")
+fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
+download.file(fileUrl, destfile="data.zip")
 NEI <- readRDS("summarySCC_PM25.rds")
 
 ## STEP 2: Generate subset data for only Balimore City
@@ -18,6 +20,6 @@ rm(NEI)
 
 ## STEP 4: Ploting total emission by year using base ploting system 
 png(file = "plot2.png", width = 480, height = 480)
-plot(Baltimore$year, log(Baltimore$Emissions), type= "l", main = "Baltimore City: Total emission by year", 
+plot(Baltimore$year, log(Baltimore$Emissions), type= "l", main = "Baltimore City: Total Emission by Year", 
      xlab = "Year", ylab  = "Emissions (log)")
 dev.off()

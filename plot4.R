@@ -6,6 +6,8 @@ library(reshape2)
 library(ggplot2)
 ## STEP 1: Setup working directory and open the data in working folder
 setwd("C:\\rproj\\Exploratory_Data_Analysis\\ASSIGN2")
+fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
+download.file(fileUrl, destfile="data.zip")
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
 
@@ -26,5 +28,8 @@ rm(NEI)
 ## STEP 4: Ploting total emission by year and "ON-ROAD" type using ggplot ploting system 
 png(file = "plot4.png")
     g <- ggplot(coal, aes(year, Emissions))
-    g + geom_point()
+    g + geom_point() + 
+    labs(x = "Year",
+         y = "Emission",
+         title = "United States: Total Emission from Coal Combustion by Year")
 dev.off()
